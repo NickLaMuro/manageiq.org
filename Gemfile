@@ -10,7 +10,6 @@ gem "jekyll-paginate"
 gem "jekyll-sitemap"
 gem "jemoji"
 gem "mini_racer"
-gem "thor"
 
 group :test, :development do
   gem "dotenv"
@@ -20,7 +19,6 @@ group :test, :development do
   gem "minitest-reporters"
   gem "pry"
   gem "pry-byebug"
-  gem "rake"
 end
 
 # source 'https://rails-assets.org' do
