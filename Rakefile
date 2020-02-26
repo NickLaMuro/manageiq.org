@@ -61,25 +61,32 @@ namespace :build do
   task :all => [:say_all, :guides, :site, :reference]
 
   task :say_all do
+    require 'stackprof'
     puts "Building all"
   end
 
   desc "Build guides"
   task :guides => :environment do
     puts "Processing guides"
-    Miq::Guides.build
+    StackProf.run(:mode => :wall, :out => 'tmp/build_guides.stackprof') do
+      Miq::Guides.build
+    end
   end
 
   desc "Build Jekyll site"
   task :site => :environment do
     puts "Building Jekyll site"
-    Miq::Site.build
+    StackProf.run(:mode => :wall, :out => 'tmp/build_site.stackprof') do
+      Miq::Site.build
+    end
   end
 
   desc "Build Reference Docs"
   task :reference => :environment do
     puts "Building reference docs"
-    Miq::RefDocs.build
+    StackProf.run(:mode => :wall, :out => 'tmp/build_reference.stackprof') do
+      Miq::RefDocs.build
+    end
   end
 
   task :ref => :reference
