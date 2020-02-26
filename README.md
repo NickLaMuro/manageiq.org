@@ -14,13 +14,12 @@ The site content has different sources.
 
 ### Source Overview
 
-| Directory | Contents |
-| --------- | -------- |
-| dest      | where the site is built locally |
-| exe       | Command line tool (Thor) |
+| Directory | Contents                                 |
+| --------- | ---------------------------------------- |
+| dest      | where the site is built locally          |
 | lib       | Ruby code for CLI, processing docs, etc. |
-| site      | Site content |
-| test      | Tests for Ruby code |
+| site      | Site content                             |
+| test      | Tests for Ruby code                      |
 
 
 ### Documentation groups
@@ -49,14 +48,25 @@ Currently this is included as a Git submodule.
 
 ### Working Locally
 
-`$ exe/miq`
 
-```
-miq build <all|guides|site|reference>   # Build or process an aspect of the site
-miq help [COMMAND]                      # Describe available commands or one specific command
-miq reset <all|guides|site|reference>   # Reset repo(s) to clean state
-miq serve                               # Does Jekyll serve with appropriate args
-miq update <all|guides|site|reference>  # Pull changes from origin repos
+```console
+$ rake -T
+rake build:all                 # Buildes guides, Jekyll site, and reference docs
+rake build:guides              # Build guides
+rake build:menus               # Regenerate menu yaml files
+rake build:reference           # Build Reference Docs
+rake build:site                # Build Jekyll site
+rake generate:lwimiq[current]  # Generate a LWIMIQ blog post
+rake reset:all                 # Reset all repos to clean state
+rake reset:guides              # Reset guides to clean state
+rake reset:reference           # Delete reference docs tmp directory
+rake reset:site                # Reset site repo to clean state
+rake serve                     # Does Jekyll serve with appropriate args
+rake test                      # Run tests
+rake update:all                # Update guides and site from upstream; prime ref doc repo
+rake update:guides             # Reset and update guides repo
+rake update:reference          # Prime the reference docs staging directory
+rake update:site               # Reset and update site repo
 ```
 
 ### Working with large images
