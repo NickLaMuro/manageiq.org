@@ -1,21 +1,543 @@
-<ul class="menu menu-toplevel" id="{{ page.doc_group }}_menu">
-{% for item in site.data["menus"]["api_menu"] %}
-  {% assign item_class = "menu-item" %}
-  {% if item.children %}
-    {% assign item_class = item_class | append: " menu-parent" %}
-  {% endif %}
-  {% if item.path == page.url %}
-    {% assign item_class = item_class | append: " active" %}
-  {% endif %}
-  <li{% if item_class.size > 0 %} class="{{ item_class }}"{% endif %}>
-    <a href="{% if item.path %}{{ item.path }}{% else %}#{% endif %}">
-      {{ item.title }}
-    </a>
-    {% if item.children %}
+{% assign hpath = page.url | append: ".html" %}
+{% assign rpath = page.url | remove: "/index" %}
+
+<ul class="menu menu-toplevel" id="api_menu">
+  <li class="menu-item menu-parent {% if "" == page.url %} active{% endif %}">
+    <a href="#">Overview</a>
     <ul>
-      {% include docs/doc_menu_items.html items=item.children %}
-    </ul>
-    {% endif %}
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/auth" == page.url or "/docs/reference/latest/api/overview/auth" == hpath or "/docs/reference/latest/api/overview/auth" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/auth">Authentication</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/authorization" == page.url or "/docs/reference/latest/api/overview/authorization" == hpath or "/docs/reference/latest/api/overview/authorization" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/authorization">Authorization</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/password" == page.url or "/docs/reference/latest/api/overview/password" == hpath or "/docs/reference/latest/api/overview/password" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/password">Password Updates</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/crud" == page.url or "/docs/reference/latest/api/overview/crud" == hpath or "/docs/reference/latest/api/overview/crud" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/crud">CRUD</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/http" == page.url or "/docs/reference/latest/api/overview/http" == hpath or "/docs/reference/latest/api/overview/http" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/http">HTTP Basics</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/json" == page.url or "/docs/reference/latest/api/overview/json" == hpath or "/docs/reference/latest/api/overview/json" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/json">Json Convention</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/query" == page.url or "/docs/reference/latest/api/overview/query" == hpath or "/docs/reference/latest/api/overview/query" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/query">Querying</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/bulk_query" == page.url or "/docs/reference/latest/api/overview/bulk_query" == hpath or "/docs/reference/latest/api/overview/bulk_query" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/bulk_query">Bulk Querying</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/filtering" == page.url or "/docs/reference/latest/api/overview/filtering" == hpath or "/docs/reference/latest/api/overview/filtering" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/filtering">Filtering</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/pagination" == page.url or "/docs/reference/latest/api/overview/pagination" == hpath or "/docs/reference/latest/api/overview/pagination" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/pagination">Pagination</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/overview/versioning" == page.url or "/docs/reference/latest/api/overview/versioning" == hpath or "/docs/reference/latest/api/overview/versioning" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/overview/versioning">Version History</a>
+</li>
+
+  <ul>
+
   </li>
-{% endfor %}
+  <li class="menu-item menu-parent {% if "" == page.url %} active{% endif %}">
+    <a href="#">Reference</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/collections" == page.url or "/docs/reference/latest/api/reference/collections" == hpath or "/docs/reference/latest/api/reference/collections" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/collections">Primary Collections</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/actions" == page.url or "/docs/reference/latest/api/reference/actions" == hpath or "/docs/reference/latest/api/reference/actions" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/actions">Actions</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/alerts" == page.url or "/docs/reference/latest/api/reference/alerts" == hpath or "/docs/reference/latest/api/reference/alerts" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/alerts">Alert Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/authentications" == page.url or "/docs/reference/latest/api/reference/authentications" == hpath or "/docs/reference/latest/api/reference/authentications" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/authentications">Authentication Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/automate" == page.url or "/docs/reference/latest/api/reference/automate" == hpath or "/docs/reference/latest/api/reference/automate" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/automate">Automate Model</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/automate_domains" == page.url or "/docs/reference/latest/api/reference/automate_domains" == hpath or "/docs/reference/latest/api/reference/automate_domains" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/automate_domains">Automate Domains</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/automation_requests" == page.url or "/docs/reference/latest/api/reference/automation_requests" == hpath or "/docs/reference/latest/api/reference/automation_requests" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/automation_requests">Automation Requests</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/automate_workspaces" == page.url or "/docs/reference/latest/api/reference/automate_workspaces" == hpath or "/docs/reference/latest/api/reference/automate_workspaces" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/automate_workspaces">Automate Workspaces</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/categories_tags" == page.url or "/docs/reference/latest/api/reference/categories_tags" == hpath or "/docs/reference/latest/api/reference/categories_tags" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/categories_tags">Categories & Tags</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/chargebacks_rates" == page.url or "/docs/reference/latest/api/reference/chargebacks_rates" == hpath or "/docs/reference/latest/api/reference/chargebacks_rates" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/chargebacks_rates">Chargebacks & Rates</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/cloud_volumes" == page.url or "/docs/reference/latest/api/reference/cloud_volumes" == hpath or "/docs/reference/latest/api/reference/cloud_volumes" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/cloud_volumes">Cloud Volumes</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/conditions" == page.url or "/docs/reference/latest/api/reference/conditions" == hpath or "/docs/reference/latest/api/reference/conditions" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/conditions">Conditions</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/configuration_script_sources" == page.url or "/docs/reference/latest/api/reference/configuration_script_sources" == hpath or "/docs/reference/latest/api/reference/configuration_script_sources" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/configuration_script_sources">Configuration Script Source Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/custom_actions" == page.url or "/docs/reference/latest/api/reference/custom_actions" == hpath or "/docs/reference/latest/api/reference/custom_actions" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/custom_actions">Custom Actions</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/custom_attributes" == page.url or "/docs/reference/latest/api/reference/custom_attributes" == hpath or "/docs/reference/latest/api/reference/custom_attributes" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/custom_attributes">Custom Attributes</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/custom_buttons" == page.url or "/docs/reference/latest/api/reference/custom_buttons" == hpath or "/docs/reference/latest/api/reference/custom_buttons" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/custom_buttons">Custom Button Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/event_streams" == page.url or "/docs/reference/latest/api/reference/event_streams" == hpath or "/docs/reference/latest/api/reference/event_streams" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/event_streams">Event Streams</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/flavors" == page.url or "/docs/reference/latest/api/reference/flavors" == hpath or "/docs/reference/latest/api/reference/flavors" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/flavors">Flavor Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/generic_objects" == page.url or "/docs/reference/latest/api/reference/generic_objects" == hpath or "/docs/reference/latest/api/reference/generic_objects" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/generic_objects">Generic Object Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/groups" == page.url or "/docs/reference/latest/api/reference/groups" == hpath or "/docs/reference/latest/api/reference/groups" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/groups">Group Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/hosts" == page.url or "/docs/reference/latest/api/reference/hosts" == hpath or "/docs/reference/latest/api/reference/hosts" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/hosts">Host Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/instances" == page.url or "/docs/reference/latest/api/reference/instances" == hpath or "/docs/reference/latest/api/reference/instances" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/instances">Instance Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/metric_rollups" == page.url or "/docs/reference/latest/api/reference/metric_rollups" == hpath or "/docs/reference/latest/api/reference/metric_rollups" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/metric_rollups">Metric Rollups</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/network_routers" == page.url or "/docs/reference/latest/api/reference/network_routers" == hpath or "/docs/reference/latest/api/reference/network_routers" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/network_routers">Network Routers</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/notifications" == page.url or "/docs/reference/latest/api/reference/notifications" == hpath or "/docs/reference/latest/api/reference/notifications" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/notifications">Notifications Support</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/orchestration" == page.url or "/docs/reference/latest/api/reference/orchestration" == hpath or "/docs/reference/latest/api/reference/orchestration" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/orchestration">Orchestration Support</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/physical_servers" == page.url or "/docs/reference/latest/api/reference/physical_servers" == hpath or "/docs/reference/latest/api/reference/physical_servers" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/physical_servers">Physical Servers</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/pictures" == page.url or "/docs/reference/latest/api/reference/pictures" == hpath or "/docs/reference/latest/api/reference/pictures" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/pictures">Picture Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/policies" == page.url or "/docs/reference/latest/api/reference/policies" == hpath or "/docs/reference/latest/api/reference/policies" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/policies">Policies & Policy Profiles</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/policy_collections" == page.url or "/docs/reference/latest/api/reference/policy_collections" == hpath or "/docs/reference/latest/api/reference/policy_collections" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/policy_collections">Policy Collections</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/providers" == page.url or "/docs/reference/latest/api/reference/providers" == hpath or "/docs/reference/latest/api/reference/providers" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/providers">Provider Support</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/provision_requests" == page.url or "/docs/reference/latest/api/reference/provision_requests" == hpath or "/docs/reference/latest/api/reference/provision_requests" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/provision_requests">Provision Requests</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/requests" == page.url or "/docs/reference/latest/api/reference/requests" == hpath or "/docs/reference/latest/api/reference/requests" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/requests">Request Support</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/reports" == page.url or "/docs/reference/latest/api/reference/reports" == hpath or "/docs/reference/latest/api/reference/reports" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/reports">Reports Support</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/roles" == page.url or "/docs/reference/latest/api/reference/roles" == hpath or "/docs/reference/latest/api/reference/roles" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/roles">Role Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/security_groups" == page.url or "/docs/reference/latest/api/reference/security_groups" == hpath or "/docs/reference/latest/api/reference/security_groups" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/security_groups">Security Groups</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/services" == page.url or "/docs/reference/latest/api/reference/services" == hpath or "/docs/reference/latest/api/reference/services" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/services">Service Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/service_queries" == page.url or "/docs/reference/latest/api/reference/service_queries" == hpath or "/docs/reference/latest/api/reference/service_queries" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/service_queries">Service Queries</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/service_custom_actions" == page.url or "/docs/reference/latest/api/reference/service_custom_actions" == hpath or "/docs/reference/latest/api/reference/service_custom_actions" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/service_custom_actions">Service Custom Actions</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/service_dialogs" == page.url or "/docs/reference/latest/api/reference/service_dialogs" == hpath or "/docs/reference/latest/api/reference/service_dialogs" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/service_dialogs">Service Dialogs</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/service_orders" == page.url or "/docs/reference/latest/api/reference/service_orders" == hpath or "/docs/reference/latest/api/reference/service_orders" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/service_orders">Service Orders (Shopping Carts)</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/ownership" == page.url or "/docs/reference/latest/api/reference/ownership" == hpath or "/docs/reference/latest/api/reference/ownership" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/ownership">Setting Ownership</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/settings" == page.url or "/docs/reference/latest/api/reference/settings" == hpath or "/docs/reference/latest/api/reference/settings" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/settings">Settings Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/snapshots" == page.url or "/docs/reference/latest/api/reference/snapshots" == hpath or "/docs/reference/latest/api/reference/snapshots" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/snapshots">Snapshot Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/tagging" == page.url or "/docs/reference/latest/api/reference/tagging" == hpath or "/docs/reference/latest/api/reference/tagging" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/tagging">Tags & Tagging</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/tasks" == page.url or "/docs/reference/latest/api/reference/tasks" == hpath or "/docs/reference/latest/api/reference/tasks" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/tasks">Tasks</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/tenants" == page.url or "/docs/reference/latest/api/reference/tenants" == hpath or "/docs/reference/latest/api/reference/tenants" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/tenants">Tenant Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/users" == page.url or "/docs/reference/latest/api/reference/users" == hpath or "/docs/reference/latest/api/reference/users" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/users">User Management</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/reference/vms" == page.url or "/docs/reference/latest/api/reference/vms" == hpath or "/docs/reference/latest/api/reference/vms" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/reference/vms">VM Management</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li class="menu-item menu-parent {% if "" == page.url %} active{% endif %}">
+    <a href="#">Appendices</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/quick_reference" == page.url or "/docs/reference/latest/api/appendices/quick_reference" == hpath or "/docs/reference/latest/api/appendices/quick_reference" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/quick_reference">Quick Reference</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/collection_metadata" == page.url or "/docs/reference/latest/api/appendices/collection_metadata" == hpath or "/docs/reference/latest/api/appendices/collection_metadata" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/collection_metadata">Collection Metadata</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/resource_attributes" == page.url or "/docs/reference/latest/api/appendices/resource_attributes" == hpath or "/docs/reference/latest/api/appendices/resource_attributes" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/resource_attributes">Resource Attributes</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/provider_types" == page.url or "/docs/reference/latest/api/appendices/provider_types" == hpath or "/docs/reference/latest/api/appendices/provider_types" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/provider_types">Provider Types</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/provision_attributes" == page.url or "/docs/reference/latest/api/appendices/provision_attributes" == hpath or "/docs/reference/latest/api/appendices/provision_attributes" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/provision_attributes">Provision Request Supported Attributes</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/advanced_provisioning" == page.url or "/docs/reference/latest/api/appendices/advanced_provisioning" == hpath or "/docs/reference/latest/api/appendices/advanced_provisioning" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/advanced_provisioning">Advanced Provisioning Attributes</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/soap_to_rest" == page.url or "/docs/reference/latest/api/appendices/soap_to_rest" == hpath or "/docs/reference/latest/api/appendices/soap_to_rest" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/soap_to_rest">SOAP to REST Mapping</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/deprecated_types" == page.url or "/docs/reference/latest/api/appendices/deprecated_types" == hpath or "/docs/reference/latest/api/appendices/deprecated_types" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/deprecated_types">Deprecated Types</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/appendices/deprecated_resource_attributes" == page.url or "/docs/reference/latest/api/appendices/deprecated_resource_attributes" == hpath or "/docs/reference/latest/api/appendices/deprecated_resource_attributes" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/appendices/deprecated_resource_attributes">Deprecated Resource Attributes</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li class="menu-item menu-parent {% if "" == page.url %} active{% endif %}">
+    <a href="#">Examples</a>
+    <ul>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Foundation</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/queries" == page.url or "/docs/reference/latest/api/examples/queries" == hpath or "/docs/reference/latest/api/examples/queries" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/queries">Querying Examples</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/paging_queries" == page.url or "/docs/reference/latest/api/examples/paging_queries" == hpath or "/docs/reference/latest/api/examples/paging_queries" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/paging_queries">Paging Queries</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Providers</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/create_provider" == page.url or "/docs/reference/latest/api/examples/create_provider" == hpath or "/docs/reference/latest/api/examples/create_provider" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/create_provider">Create a Provider</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/create_provider_compound_credentials" == page.url or "/docs/reference/latest/api/examples/create_provider_compound_credentials" == hpath or "/docs/reference/latest/api/examples/create_provider_compound_credentials" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/create_provider_compound_credentials">Create a Provider with multiple credentials</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/update_provider" == page.url or "/docs/reference/latest/api/examples/update_provider" == hpath or "/docs/reference/latest/api/examples/update_provider" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/update_provider">Update a Provider</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/refresh_provider" == page.url or "/docs/reference/latest/api/examples/refresh_provider" == hpath or "/docs/reference/latest/api/examples/refresh_provider" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/refresh_provider">Refresh Provider</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/delete_provider" == page.url or "/docs/reference/latest/api/examples/delete_provider" == hpath or "/docs/reference/latest/api/examples/delete_provider" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/delete_provider">Delete Provider</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Provisioning Requests</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/provision_request" == page.url or "/docs/reference/latest/api/examples/provision_request" == hpath or "/docs/reference/latest/api/examples/provision_request" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/provision_request">Create a Provision Request</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/provision_requests" == page.url or "/docs/reference/latest/api/examples/provision_requests" == hpath or "/docs/reference/latest/api/examples/provision_requests" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/provision_requests">Create multliple Provision Requests</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Service Catalogs</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/add_service_catalog" == page.url or "/docs/reference/latest/api/examples/add_service_catalog" == hpath or "/docs/reference/latest/api/examples/add_service_catalog" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/add_service_catalog">Add a Service Catalog</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/add_service_catalogs" == page.url or "/docs/reference/latest/api/examples/add_service_catalogs" == hpath or "/docs/reference/latest/api/examples/add_service_catalogs" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/add_service_catalogs">Add multiple Service Catalogs</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_catalog" == page.url or "/docs/reference/latest/api/examples/edit_service_catalog" == hpath or "/docs/reference/latest/api/examples/edit_service_catalog" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_catalog">Edit a Service Catalog</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_catalogs" == page.url or "/docs/reference/latest/api/examples/edit_service_catalogs" == hpath or "/docs/reference/latest/api/examples/edit_service_catalogs" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_catalogs">Edit Service Catalogs</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/assign_service_templates" == page.url or "/docs/reference/latest/api/examples/assign_service_templates" == hpath or "/docs/reference/latest/api/examples/assign_service_templates" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/assign_service_templates">Assign Service Templates</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/unassign_service_templates" == page.url or "/docs/reference/latest/api/examples/unassign_service_templates" == hpath or "/docs/reference/latest/api/examples/unassign_service_templates" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/unassign_service_templates">Unassign Service Templates</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/delete_service_catalogs" == page.url or "/docs/reference/latest/api/examples/delete_service_catalogs" == hpath or "/docs/reference/latest/api/examples/delete_service_catalogs" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/delete_service_catalogs">Delete Service Catalogs</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Service Templates</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_template" == page.url or "/docs/reference/latest/api/examples/edit_service_template" == hpath or "/docs/reference/latest/api/examples/edit_service_template" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_template">Edit a Service Template</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_templates" == page.url or "/docs/reference/latest/api/examples/edit_service_templates" == hpath or "/docs/reference/latest/api/examples/edit_service_templates" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_templates">Edit Service Templates</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/delete_service_templates" == page.url or "/docs/reference/latest/api/examples/delete_service_templates" == hpath or "/docs/reference/latest/api/examples/delete_service_templates" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/delete_service_templates">Delete Service Templates</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Services</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/order_service" == page.url or "/docs/reference/latest/api/examples/order_service" == hpath or "/docs/reference/latest/api/examples/order_service" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/order_service">Order a Service</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/order_services" == page.url or "/docs/reference/latest/api/examples/order_services" == hpath or "/docs/reference/latest/api/examples/order_services" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/order_services">Order multiple Services</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service" == page.url or "/docs/reference/latest/api/examples/edit_service" == hpath or "/docs/reference/latest/api/examples/edit_service" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service">Edit a Service</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_via_patch" == page.url or "/docs/reference/latest/api/examples/edit_service_via_patch" == hpath or "/docs/reference/latest/api/examples/edit_service_via_patch" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_via_patch">Edit Service via PATCH</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_service_via_put" == page.url or "/docs/reference/latest/api/examples/edit_service_via_put" == hpath or "/docs/reference/latest/api/examples/edit_service_via_put" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_service_via_put">Edit Service via PUT</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/edit_services" == page.url or "/docs/reference/latest/api/examples/edit_services" == hpath or "/docs/reference/latest/api/examples/edit_services" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/edit_services">Edit Services</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/reconfigure_service" == page.url or "/docs/reference/latest/api/examples/reconfigure_service" == hpath or "/docs/reference/latest/api/examples/reconfigure_service" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/reconfigure_service">Reconfigure Service</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/refresh_dialog_fields" == page.url or "/docs/reference/latest/api/examples/refresh_dialog_fields" == hpath or "/docs/reference/latest/api/examples/refresh_dialog_fields" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/refresh_dialog_fields">Refresh Service Template Dialog Fields</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/refresh_service_dialog_fields" == page.url or "/docs/reference/latest/api/examples/refresh_service_dialog_fields" == hpath or "/docs/reference/latest/api/examples/refresh_service_dialog_fields" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/refresh_service_dialog_fields">Refresh Service Dialog Fields</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/retire_service" == page.url or "/docs/reference/latest/api/examples/retire_service" == hpath or "/docs/reference/latest/api/examples/retire_service" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/retire_service">Retire a Service</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/retire_services" == page.url or "/docs/reference/latest/api/examples/retire_services" == hpath or "/docs/reference/latest/api/examples/retire_services" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/retire_services">Retire multiple Services</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/custom_action_service" == page.url or "/docs/reference/latest/api/examples/custom_action_service" == hpath or "/docs/reference/latest/api/examples/custom_action_service" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/custom_action_service">Trigger a Custom Action on a Service</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/delete_services" == page.url or "/docs/reference/latest/api/examples/delete_services" == hpath or "/docs/reference/latest/api/examples/delete_services" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/delete_services">Delete Services</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">VM Management</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/start_vm" == page.url or "/docs/reference/latest/api/examples/start_vm" == hpath or "/docs/reference/latest/api/examples/start_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/start_vm">Start a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/stop_vm" == page.url or "/docs/reference/latest/api/examples/stop_vm" == hpath or "/docs/reference/latest/api/examples/stop_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/stop_vm">Stop a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/suspend_vm" == page.url or "/docs/reference/latest/api/examples/suspend_vm" == hpath or "/docs/reference/latest/api/examples/suspend_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/suspend_vm">Suspend a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/scan_vm" == page.url or "/docs/reference/latest/api/examples/scan_vm" == hpath or "/docs/reference/latest/api/examples/scan_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/scan_vm">Scan a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/set_owner_vm" == page.url or "/docs/reference/latest/api/examples/set_owner_vm" == hpath or "/docs/reference/latest/api/examples/set_owner_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/set_owner_vm">Set owner of a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/add_event_vm" == page.url or "/docs/reference/latest/api/examples/add_event_vm" == hpath or "/docs/reference/latest/api/examples/add_event_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/add_event_vm">Add event to a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/add_lifecycle_event_vm" == page.url or "/docs/reference/latest/api/examples/add_lifecycle_event_vm" == hpath or "/docs/reference/latest/api/examples/add_lifecycle_event_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/add_lifecycle_event_vm">Add lifecycle event to a VM</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/delete_vm" == page.url or "/docs/reference/latest/api/examples/delete_vm" == hpath or "/docs/reference/latest/api/examples/delete_vm" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/delete_vm">Delete a VM</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Tag Management</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/assign_tags" == page.url or "/docs/reference/latest/api/examples/assign_tags" == hpath or "/docs/reference/latest/api/examples/assign_tags" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/assign_tags">Assign Tags</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/assign_tags_to_service_template" == page.url or "/docs/reference/latest/api/examples/assign_tags_to_service_template" == hpath or "/docs/reference/latest/api/examples/assign_tags_to_service_template" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/assign_tags_to_service_template">Assign Tags to Service Template</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/unassign_tags" == page.url or "/docs/reference/latest/api/examples/unassign_tags" == hpath or "/docs/reference/latest/api/examples/unassign_tags" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/unassign_tags">Unassign Tags</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/unassign_tags_from_service_template" == page.url or "/docs/reference/latest/api/examples/unassign_tags_from_service_template" == hpath or "/docs/reference/latest/api/examples/unassign_tags_from_service_template" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/unassign_tags_from_service_template">Unassign Tags from a Service Template</a>
+</li>
+
+  <ul>
+
+  </li>
+    <li class="doc-menu-item {% if "" == page.url or "" == hpath or "" == rpath %} active{% endif %}">
+    <a href="#">Automation Requests</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/automation_request" == page.url or "/docs/reference/latest/api/examples/automation_request" == hpath or "/docs/reference/latest/api/examples/automation_request" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/automation_request">Create an Automation Request</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/reference/latest/api/examples/automation_requests" == page.url or "/docs/reference/latest/api/examples/automation_requests" == hpath or "/docs/reference/latest/api/examples/automation_requests" == rpath %} active{% endif %}">
+  <a href="/docs/reference/latest/api/examples/automation_requests">Create multiple Automation Requests</a>
+</li>
+
+  <ul>
+
+  </li>
+    <ul>
+
+  </li>
 </ul>

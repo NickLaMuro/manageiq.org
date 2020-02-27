@@ -10,6 +10,10 @@ module Miq
       new.build_dev_menu_html
     end
 
+    def self.build_api_menu_html
+      new.build_api_menu_html
+    end
+
     attr_reader :source_dir, :output_dir
 
     def initialize(transform_paths: true)
@@ -60,6 +64,32 @@ module Miq
       MENU_TEMPLATE.result(binding)
     end
 
+    API_TEMPLATE = ERB.new <<~API_TEMPLATE, :trim_mode => "-"
+      {% assign hpath = page.url | append: ".html" %}
+      {% assign rpath = page.url | remove: "/index" %}
+
+      <ul class="menu menu-toplevel" id="api_menu">
+      <% parent_items.each do |item| -%>
+        <li class="menu-item menu-parent {% <%= liquid_if item, true, true %> %} active{% endif %}">
+          <%= render_menu_link_for item %>
+          <%= render_children item["children"] %>
+        </li>
+      <% end -%>
+      <% solo_items.each do |item| -%>
+        <li class="menu-item {% <%= liquid_if(item, true, true) %> %} active{% endif %}">
+          <%= render_menu_link_for item %>
+        </li>
+      <% end -%>
+      </ul>
+    API_TEMPLATE
+
+    def build_api_menu_html
+      menu_file                = Miq.working_dir.join("site", "_data", "menus", "api_menu.yml")
+      menu_items               = YAML.load_file(menu_file)
+      parent_items, solo_items = partion_by_children(menu_items)
+      API_TEMPLATE.result(binding)
+    end
+
     private
 
     def partion_by_children items
@@ -69,7 +99,7 @@ module Miq
     CHILDREN_TEMPLATE = ERB.new <<~CHILDREN_TEMPLATE, :trim_mode => "-"
       <ul>
         <% parent_items.each do |item| -%>
-        <li class="doc-menu-item {% <%= liquid_if item %> %} active{% endif %}">
+        <li class="doc-menu-item {% <%= liquid_if item, false %> %} active{% endif %}">
           <%= render_menu_link_for(item) %>
           <%= render_children item["children"] %>
         </li>
@@ -111,9 +141,10 @@ module Miq
       end
     end
 
-    def liquid_if item, top_level = false
-      lif  = %(if "#{item["path"]}" == page.url or "#{item["path"]}" == hpath)
-      lif << %( or "#{item["path"]}" == rpath) unless top_level
+    def liquid_if item, top_level = false, api = false
+      lif  = %(if "#{item["path"]}" == page.url)
+      lif << %( or "#{item["path"]}" == hpath) unless api
+      lif << %( or "#{item["path"]}" == rpath) unless top_level or api
       lif
     end
 
