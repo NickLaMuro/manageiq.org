@@ -38,7 +38,8 @@ module Miq
     end
 
     def build
-      shell "#{bundler} exec jekyll build -s #{source_dir} -d #{dest_dir}", clean: true
+      # shell "#{bundler} exec jekyll build -s #{source_dir} -d #{dest_dir}", clean: true
+      shell "ruby jekyll_stub.rb build -s #{source_dir} -d #{dest_dir}", clean: true
     end
 
     def serve
