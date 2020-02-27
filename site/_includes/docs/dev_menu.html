@@ -1,31 +1,135 @@
 {% assign hpath = page.url | append: ".html" %}
 {% assign rpath = page.url | remove: "/index" %}
 
-
 <ul class="menu menu-toplevel" id="guides_menu">
-{% for group in site.data["menus"]["guides_menu"]["children"] %}
-  {% assign item_class = "" %}
-  {% if group.children %}
-    {% assign item_class = item_class | append: "menu-parent" %}
-  {% endif %}
-  {% if group.path == page.url or group.path == hpath %}
-    {% assign item_class = item_class | append: " active menu-open" %}
-  {% endif %}
-  <li{% if item_class.size > 0 %} class="{{ item_class }}"{% endif %}>
-    {% if group.path %}
-    <a href="{{ group.path }}">
-      {{ group.title }}
-    </a>
-    {% else %}
-    <a href="#">
-      {{ group.title }}
-    </a>
-    {% endif %}
-    {% if group.children.size > 0 %}
-      <ul>
-        {% include docs/doc_menu_items.html items=group.children hpath=hpath rpath=rpath %}
-      </ul>
-    {% endif %}
+  <li class="menu-parent {% if "" == page.url or "" == hpath %} active menu-open{% endif %}">
+    <a href="#">Architecture</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/guides/architecture.html" == page.url or "/docs/guides/architecture.html" == hpath or "/docs/guides/architecture.html" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture.html">Overview</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/architecture/capacity_and_utilization_collection_explanation" == page.url or "/docs/guides/architecture/capacity_and_utilization_collection_explanation" == hpath or "/docs/guides/architecture/capacity_and_utilization_collection_explanation" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture/capacity_and_utilization_collection_explanation">Capacity And Utilization Collection Explanation</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/architecture/enterprise" == page.url or "/docs/guides/architecture/enterprise" == hpath or "/docs/guides/architecture/enterprise" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture/enterprise">Enterprise</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/architecture/source_code_layout" == page.url or "/docs/guides/architecture/source_code_layout" == hpath or "/docs/guides/architecture/source_code_layout" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture/source_code_layout">Source Code Layout</a>
+</li>
+
+  <ul>
+
   </li>
-{% endfor %}
+  <li class="menu-parent {% if "" == page.url or "" == hpath %} active menu-open{% endif %}">
+    <a href="#">Developer Setup</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/guides/developer_setup.html" == page.url or "/docs/guides/developer_setup.html" == hpath or "/docs/guides/developer_setup.html" == rpath %} active{% endif %}">
+  <a href="/docs/guides/developer_setup.html">Overview</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/developer_setup/plugins" == page.url or "/docs/guides/developer_setup/plugins" == hpath or "/docs/guides/developer_setup/plugins" == rpath %} active{% endif %}">
+  <a href="/docs/guides/developer_setup/plugins">Plugins</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/developer_setup/minimal_mode" == page.url or "/docs/guides/developer_setup/minimal_mode" == hpath or "/docs/guides/developer_setup/minimal_mode" == rpath %} active{% endif %}">
+  <a href="/docs/guides/developer_setup/minimal_mode">Minimal Mode</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/developer_setup/running_test_suites" == page.url or "/docs/guides/developer_setup/running_test_suites" == hpath or "/docs/guides/developer_setup/running_test_suites" == rpath %} active{% endif %}">
+  <a href="/docs/guides/developer_setup/running_test_suites">Running Test Suites</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/developer_setup/debugging" == page.url or "/docs/guides/developer_setup/debugging" == hpath or "/docs/guides/developer_setup/debugging" == rpath %} active{% endif %}">
+  <a href="/docs/guides/developer_setup/debugging">Interactive debugging</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li class="menu-parent {% if "" == page.url or "" == hpath %} active menu-open{% endif %}">
+    <a href="#">External Auth</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/guides/external_auth.html" == page.url or "/docs/guides/external_auth.html" == hpath or "/docs/guides/external_auth.html" == rpath %} active{% endif %}">
+  <a href="/docs/guides/external_auth.html">Overview</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/external_auth/configuration" == page.url or "/docs/guides/external_auth/configuration" == hpath or "/docs/guides/external_auth/configuration" == rpath %} active{% endif %}">
+  <a href="/docs/guides/external_auth/configuration">Configuration</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/external_auth/installation" == page.url or "/docs/guides/external_auth/installation" == hpath or "/docs/guides/external_auth/installation" == rpath %} active{% endif %}">
+  <a href="/docs/guides/external_auth/installation">Installation</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li class="menu-parent {% if "" == page.url or "" == hpath %} active menu-open{% endif %}">
+    <a href="#">User Interface</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/guides/ui/patterns" == page.url or "/docs/guides/ui/patterns" == hpath or "/docs/guides/ui/patterns" == rpath %} active{% endif %}">
+  <a href="/docs/guides/ui/patterns">UI Patterns</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/ui/plugins" == page.url or "/docs/guides/ui/plugins" == hpath or "/docs/guides/ui/plugins" == rpath %} active{% endif %}">
+  <a href="/docs/guides/ui/plugins">UI Plugins</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/ui/register_react_component" == page.url or "/docs/guides/ui/register_react_component" == hpath or "/docs/guides/ui/register_react_component" == rpath %} active{% endif %}">
+  <a href="/docs/guides/ui/register_react_component">Shared React Component API</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/ui/report_data_api" == page.url or "/docs/guides/ui/report_data_api" == hpath or "/docs/guides/ui/report_data_api" == rpath %} active{% endif %}">
+  <a href="/docs/guides/ui/report_data_api">Report Data API</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li class="menu-parent {% if "" == page.url or "" == hpath %} active menu-open{% endif %}">
+    <a href="#">Providers</a>
+    <ul>
+        <li class="doc-menu-item {% if "/docs/guides/architecture/providers_overview" == page.url or "/docs/guides/architecture/providers_overview" == hpath or "/docs/guides/architecture/providers_overview" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture/providers_overview">Providers Overview</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/architecture/providers_database_architecture.html" == page.url or "/docs/guides/architecture/providers_database_architecture.html" == hpath or "/docs/guides/architecture/providers_database_architecture.html" == rpath %} active{% endif %}">
+  <a href="/docs/guides/architecture/providers_database_architecture.html">Providers Database Architecture</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/providers/amazon_aws_config" == page.url or "/docs/guides/providers/amazon_aws_config" == hpath or "/docs/guides/providers/amazon_aws_config" == rpath %} active{% endif %}">
+  <a href="/docs/guides/providers/amazon_aws_config">Amazon AWS Config</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/providers/containers" == page.url or "/docs/guides/providers/containers" == hpath or "/docs/guides/providers/containers" == rpath %} active{% endif %}">
+  <a href="/docs/guides/providers/containers">Containers</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/providers/openshift" == page.url or "/docs/guides/providers/openshift" == hpath or "/docs/guides/providers/openshift" == rpath %} active{% endif %}">
+  <a href="/docs/guides/providers/openshift">Openshift</a>
+</li>
+
+      <li class="doc-menu-item {% if "/docs/guides/providers/openstack_infra_provider" == page.url or "/docs/guides/providers/openstack_infra_provider" == hpath or "/docs/guides/providers/openstack_infra_provider" == rpath %} active{% endif %}">
+  <a href="/docs/guides/providers/openstack_infra_provider">Openstack Infra Provider</a>
+</li>
+
+  <ul>
+
+  </li>
+  <li{% if "/docs/guides/provisioning/windows_imaging" == page.url or "/docs/guides/provisioning/windows_imaging" == hpath %} class="active menu-open"{% endif %}>
+  <a href="/docs/guides/provisioning/windows_imaging">Windows Imaging</a>
+</li>
+
+  <li{% if "/docs/guides/coding_style_and_standards" == page.url or "/docs/guides/coding_style_and_standards" == hpath %} class="active menu-open"{% endif %}>
+  <a href="/docs/guides/coding_style_and_standards">Coding Style And Standards</a>
+</li>
+
+  <li{% if "/docs/guides/i18n" == page.url or "/docs/guides/i18n" == hpath %} class="active menu-open"{% endif %}>
+  <a href="/docs/guides/i18n">I18n</a>
+</li>
+
 </ul>

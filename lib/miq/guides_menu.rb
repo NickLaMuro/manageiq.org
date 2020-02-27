@@ -6,8 +6,8 @@ module Miq
       new.build
     end
 
-    def self.build_doc_menu_html
-      new.build_doc_menu_html
+    def self.build_dev_menu_html
+      new.build_dev_menu_html
     end
 
     attr_reader :source_dir, :output_dir
@@ -34,38 +34,87 @@ module Miq
       end
     end
 
-    MENU_TEMPLATE = <<~MENU_TEMPLATE
+    MENU_TEMPLATE = ERB.new <<~MENU_TEMPLATE, :trim_mode => "-"
       {% assign hpath = page.url | append: ".html" %}
       {% assign rpath = page.url | remove: "/index" %}
 
       <ul class="menu menu-toplevel" id="guides_menu">
-      <% parent_items.each do |group| -%>
-        <li class="menu-parent {% if "<%= group["path"] %>" == page.url or "<%= group["path"] %>" == hpath %} active menu-open{% endif %}">
-          <%= render_menu_link_for group %>
-          <% if group["children"] && group["children"].size > 0 %>
-          <%= render_children group.children %>
-          <% end -%>
+      <% parent_items.each do |item| -%>
+        <li class="menu-parent {% <%= liquid_if item, true %> %} active menu-open{% endif %}">
+          <%= render_menu_link_for item %>
+          <%= render_children item["children"] %>
         </li>
       <% end -%>
-      <% solo_items.each do |group| -%>
-        <li{% if "<%= group["path"] %>" == page.url or "<%= group["path"] %>" == hpath %} class="active menu-open"{% endif %}>
-          <%= render_menu_link_for group %>
-        </li>
+      <% solo_items.each do |item| -%>
+        <%= render_solo_item_for item, true %>
       <% end -%>
       </ul>
     MENU_TEMPLATE
 
     # TODO:  Either combine with `#build`, or delete the code for that
-    def build_doc_menu_html
-      menu_items   = site.data["menus"]["guides_menu"]["children"]
-      parent_items = menu_items.select {|e| e["children"] }
-      solo_items   = menu_items.reject {|e| e["children"] }
+    def build_dev_menu_html
+      # menu_items               = site.data["menus"]["guides_menu"]["children"]
+      menu_file                = Miq.working_dir.join("site", "_data", "menus", "guides_menu.yml")
+      menu_items               = YAML.load_file(menu_file)["children"]
+      parent_items, solo_items = partion_by_children(menu_items)
+      MENU_TEMPLATE.result(binding)
     end
 
     private
 
-    def render_menu_link_for item
-      %(<a href="#{item["path"] || "#"}">#{group["title"]}</a>)
+    def partion_by_children items
+      items.partition {|e| e["children"] && e["children"].size > 0 }
+    end
+
+    CHILDREN_TEMPLATE = ERB.new <<~CHILDREN_TEMPLATE, :trim_mode => "-"
+      <ul>
+        <% parent_items.each do |item| -%>
+        <li class="doc-menu-item {% <%= liquid_if item %> %} active{% endif %}">
+          <%= render_menu_link_for(item) %>
+          <%= render_children item["children"] %>
+        </li>
+        <% end -%>
+        <% solo_items.each do |item| -%>
+          <%= render_solo_item_for item %>
+        <% end -%>
+      <ul>
+    CHILDREN_TEMPLATE
+    def render_children(children)
+      if children and children.size > 0
+        parent_items, solo_items = partion_by_children(children)
+        CHILDREN_TEMPLATE.result(binding)
+      else
+        ""
+      end
+    end
+
+    def render_menu_link_for(item)
+      %(<a href="#{item["path"] || "#"}">#{item["title"]}</a>)
+    end
+
+    def render_solo_item_for(item, top_level = false)
+      active_class  = "active"
+      active_class << " menu-open" if top_level
+
+      if top_level
+        <<~DATA
+          <li{% #{liquid_if(item, top_level)} %} class="#{active_class}"{% endif %}>
+            #{render_menu_link_for(item)}
+          </li>
+        DATA
+      else
+        <<~DATA
+          <li class="doc-menu-item {% #{liquid_if(item, top_level)} %} #{active_class}{% endif %}">
+            #{render_menu_link_for(item)}
+          </li>
+        DATA
+      end
+    end
+
+    def liquid_if item, top_level = false
+      lif  = %(if "#{item["path"]}" == page.url or "#{item["path"]}" == hpath)
+      lif << %( or "#{item["path"]}" == rpath) unless top_level
+      lif
     end
 
     def walk_tree(path, title = nil)
