@@ -1,12 +1,9 @@
-{% assign hpath = page.url | append: ".html" %}
-{% assign rpath = page.url | remove: "/index" %}
-
 {% for item in include.items %}
   {% assign item_class = "doc_menu-item" %}
   {% if item.children %}
     {% assign item_class = item_class | append: " menu-parent" %}
   {% endif %}
-  {% if item.path == page.url or item.path == hpath or item.path == rpath %}
+  {% if item.path == page.url or item.path == include.hpath or item.path == include.rpath %}
     {% assign item_class = item_class | append: " active" %}
   {% endif %}
   <li{% if item_class.size > 0 %} class="{{ item_class }}"{% endif %}>
@@ -15,7 +12,7 @@
     </a>
     {% if item.children %}
     <ul>
-      {% include docs/doc_menu_items.html items=item.children %}
+      {% include docs/doc_menu_items.html items=item.children hpath=hpath rpath=rpath %}
     </ul>
     {% endif %}
   </li>

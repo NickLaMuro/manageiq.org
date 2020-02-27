@@ -4,6 +4,8 @@ _site
 .env
 
 dest/
+site/_includes/docs/doc_menu.html
+site/_includes/docs/doc_menu_items.html
 site/docs/guides
 site/docs/reference/latest/
 site/docs/reference/ivanchuk/

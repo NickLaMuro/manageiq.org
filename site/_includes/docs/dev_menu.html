@@ -1,4 +1,6 @@
 {% assign hpath = page.url | append: ".html" %}
+{% assign rpath = page.url | remove: "/index" %}
+
 
 <ul class="menu menu-toplevel" id="guides_menu">
 {% for group in site.data["menus"]["guides_menu"]["children"] %}
@@ -21,7 +23,7 @@
     {% endif %}
     {% if group.children.size > 0 %}
       <ul>
-        {% include docs/doc_menu_items.html items=group.children %}
+        {% include docs/doc_menu_items.html items=group.children hpath=hpath rpath=rpath %}
       </ul>
     {% endif %}
   </li>
